@@ -1,0 +1,8 @@
+pandoc: 3.1.11
+pkgdown: 2.2.0
+pkgdown_sha: ~
+articles: {}
+last_built: 2026-03-11T15:55Z
+urls:
+  reference: https://drmattg.github.io/SpeciesSearchR/reference
+  article: https://drmattg.github.io/SpeciesSearchR/articles
