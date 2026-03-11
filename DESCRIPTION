@@ -1,0 +1,15 @@
+Package: SpeciesSearchR
+Title: Tools for Searching Species Literature via OpenAlex
+Version: 0.0.0.9000
+Authors@R: 
+    person("Matthew", "Grainger", email = "matt.grainger@nina.no", role = c("aut", "cre"))
+Description: Functions to search OpenAlex for scientific literature on focal species.
+License: AGPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports:
+    dplyr,
+    openalexR,
+    purrr
+    
