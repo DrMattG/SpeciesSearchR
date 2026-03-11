@@ -12,4 +12,5 @@ Imports:
     dplyr,
     openalexR,
     purrr
-    
+URL: https://github.com/DrMattG/SpeciesSearchR
+BugReports: https://github.com/DrMattG/SpeciesSearchR/issues
