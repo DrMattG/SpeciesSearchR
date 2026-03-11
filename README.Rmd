@@ -1,0 +1,104 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# SpeciesSearchR
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+SpeciesSearchR provides simple tools for searching the scientific literature for specific species using the OpenAlex API. The package is designed to make it easy to retrieve journal articles mentioning a focal species (and optionally common names or synonyms).
+
+This can be useful for:
+
+- literature discovery
+
+- evidence mapping
+
+- rapid review scoping
+
+- species bibliographies
+
+- ecological meta-research
+
+The package builds on the excellent openalexR package and provides a
+convenient wrapper for species-based queries.
+
+## Installation
+
+You can install the development version of SpeciesSearchR from [GitHub](https://github.com/DrMattG/SpeciesSearchR) with:
+
+``` r
+# install.packages("pak")
+pak::pak("DrMattG/SpeciesSearchR")
+```
+Alternatively:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("DrMattG/SpeciesSearchR")
+```
+# Example
+
+Search for literature mentioning the gray wolf (Canis lupus):
+
+
+```{r}
+library(SpeciesSearchR)
+wolf <- search_species_openalex(
+  species = "Canis lupus",
+  synonyms = c("gray wolf", "grey wolf"),
+  pages = 1
+)
+wolf
+
+
+```
+
+
+The function returns a tibble containing bibliographic information including:
+```{r}
+dplyr::glimpse(wolf)
+```
+
+
+## Searching multiple species
+
+The function can easily be used in loops or purrr workflows to search for multiple species.
+
+```{r}
+library(purrr)
+
+species_list <- list(
+  wolf = c("Canis lupus", "gray wolf", "grey wolf"),
+  lynx = c("Lynx lynx", "Eurasian lynx"),
+  bear = c("Ursus arctos", "brown bear")
+)
+
+results <- purrr::imap_dfr(
+  species_list,
+  ~ search_species_openalex(
+      species = .x[1],
+      synonyms = .x[-1],
+      pages = 1
+    )
+)
+
+results
+```
+
+# Notes
+
+OpenAlex search is not equivalent to structured database searches used in systematic reviews (e.g. Web of Science or Scopus). However, it is extremely useful for automated literature discovery and exploratory evidence synthesis.
+
